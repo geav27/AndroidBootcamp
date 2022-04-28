@@ -1,6 +1,0 @@
-class Cash(): Payment(){
-    
-    override fun pay(){
-        println("Pago procesado en Efectivo por valor de $$value $currency")
-    }
-}

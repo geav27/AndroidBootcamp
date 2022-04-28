@@ -1,0 +1,70 @@
+fun main() {
+    
+    val amountInCOP = 100000.0
+    val amountInUSD = 25.0
+    var paymentType = ""
+    
+    when(paymentType){
+        
+        "TC" -> {
+            var transaction = CreditCard("1234 4321 1234 4321","12/2020","123")
+    		transaction.holderName = "John Doe"
+    		transaction.holderId = "1000.123.456"
+    		transaction.currency = "USD"
+    		transaction.value = amountInUSD
+			transaction.pay()
+        }
+        
+        "BT" -> {
+            var transaction = BankTransfer("Bancolombia", "123-45678-321", "1234", "Bancolombia", "321-54321-123")
+    		transaction.currency = "COP"
+    		transaction.value = amountInCOP
+			transaction.pay()
+        }
+        
+        "Cash" -> {
+            var transaction = Cash()
+    		transaction.currency = "COP"
+    		transaction.value = amountInCOP
+			transaction.pay()
+        }
+        
+        else -> {
+            println("Pago No Procesado")
+        }
+    }
+    
+}
+
+abstract class Payment{
+    
+    var value: Double = 0.0
+    var currency: String = "COP"
+    
+    abstract fun pay()
+}
+
+class CreditCard(val card_number: String,val exp_date: String, val cvv: String): Payment(){
+           
+    var holderName: String? = null
+    var holderId: String? = null
+    
+    override fun pay(){
+        println("Pago procesado con Tarjeta De Credito por valor de $$value $currency")
+    }
+    
+}
+
+class BankTransfer(val originBank: String, origAccNum: String, val pin: String, val destBank: String, val destAccNum: String): Payment(){
+    
+    override fun pay(){
+        println("Pago procesado por Transferencia Bancaria por valor de $$value $currency")
+    }
+}
+
+class Cash(): Payment(){
+    
+    override fun pay(){
+        println("Pago procesado en Efectivo por valor de $$value $currency")
+    }
+}

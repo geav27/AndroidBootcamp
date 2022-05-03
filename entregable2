@@ -29,7 +29,8 @@ class Nomina(val empleado: Empleado){
 abstract class Empleado{
     protected abstract val salarioXHora: Double
     protected abstract val horasXMes: Int
-    protected abstract val salario: Double
+    protected val salario: Double
+    	get() = horasXMes * salarioXHora
     protected abstract val bono: Double
     
     fun calcularPagoMensual(): Double{
@@ -40,16 +41,12 @@ abstract class Empleado{
 class Gerente(): Empleado(){
     override val salarioXHora: Double = 200.0
     override val horasXMes: Int = 200
-    override val salario: Double
-    	get() = horasXMes * salarioXHora 
     override val bono: Double = 0.0
 }
 
 class Operador(): Empleado(){
     override val salarioXHora: Double = 10.0
     override val horasXMes: Int = 230
-    override val salario: Double
-    	get() = horasXMes * salarioXHora 
 	override val bono: Double
     	get() = 10 * salarioXHora
 }
@@ -57,7 +54,5 @@ class Operador(): Empleado(){
 class Contador(): Empleado(){
     override val salarioXHora: Double = 50.0
     override val horasXMes: Int = 200
-    override val salario: Double
-    	get() = horasXMes * salarioXHora 
 	override val bono: Double = 0.0
 }

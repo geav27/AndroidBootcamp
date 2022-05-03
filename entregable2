@@ -1,6 +1,6 @@
 fun main(){
     
-    val tipoDeEmpleado: Int = 1
+    val tipoDeEmpleado: Int = 3
     val empleado = asignarTipoDeEmpleado(tipoDeEmpleado)
     val nomina = Nomina(empleado)
     println(nomina.calcularNomina())
@@ -56,7 +56,7 @@ class Operador(): Empleado{
     	get() = 10 * salarioXHora
 
     override fun calcularPagoMensual(): Double{
-        return salarioXHora * horasXMes + bono
+        return salario + bono
     }
 }
 
@@ -68,6 +68,6 @@ class Contador(): Empleado{
 	override val bono: Double = 0.0
 
     override fun calcularPagoMensual(): Double{
-        return salarioXHora * horasXMes + bono
+        return salario + bono
     }
 }

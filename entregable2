@@ -27,10 +27,10 @@ class Nomina(val empleado: Empleado){
 }
 
 abstract class Empleado{
-    abstract val salarioXHora: Double
-    abstract val horasXMes: Int
-    abstract val salario: Double
-    abstract val bono: Double
+    protected abstract val salarioXHora: Double
+    protected abstract val horasXMes: Int
+    protected abstract val salario: Double
+    protected abstract val bono: Double
     
     fun calcularPagoMensual(): Double{
         return salario + bono
